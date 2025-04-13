@@ -64,7 +64,7 @@ export default function Home() {
           <div className="container mx-auto px-4 py-6 sm:py-8">
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
               <Image 
-                src="/waffy.png"
+                src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
                 alt="Logo"
                 width={40}
                 height={40}
