@@ -10,7 +10,7 @@ export default function Home() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
                 <Image 
-                src="/waffy.png"
+                src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
                 alt="Logo"
                 width={48}
                 height={48}
@@ -49,7 +49,7 @@ export default function Home() {
                     <Image 
                       className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 text-white"
                       alt="Waffy Logo"
-                      src="/waffy.png"
+                      src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
                       width={128}
                       height={128}
                     />
