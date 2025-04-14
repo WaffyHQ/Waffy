@@ -13,6 +13,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="w-screen overflow-hidden overflow-y-scroll">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          
           {children}
         </ThemeProvider>
       </body>
