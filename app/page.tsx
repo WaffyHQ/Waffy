@@ -4,37 +4,108 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import {useRef, useState } from "react"
 import {Input} from "@/components/ui/input"
-import {ArrowRight} from "lucide-react"
+import {ArrowRight, Menu, X} from "lucide-react"
+
 export default function Home() {
-const [email,setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-const emailRef = useRef<HTMLInputElement>(null);
-const scrollEmail = () => {
-  emailRef.current?.scrollIntoView({ behavior: 'smooth' })
-  emailRef.current?.focus();
-}
+  const emailRef = useRef<HTMLInputElement>(null);
+  
+  const scrollEmail = () => {
+    emailRef.current?.scrollIntoView({ behavior: 'smooth' })
+    emailRef.current?.focus();
+  }
 
-// const waitList = () => {
-//   // const res=
-// }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  }
+
   return (
     <div className="min-h-screen bg-[#0d0d17] flex flex-col">
       
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
-      <header className="border-b border-gray-800">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
+      <header className="border-b border-gray-800 relative">
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between w-full">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-                <Image 
+              <Image 
                 src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
                 alt="Logo"
                 width={48}
                 height={48}
                 className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
-                />
+              />
             </Link>
           </div>
+
+          <nav className="hidden md:block">
+            <ul className="flex space-x-6">
+              <li>
+                <Link href="/" className="text-gray-400 hover:text-white text-base">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-400 hover:text-white text-base">
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link href="/features" className="text-gray-400 hover:text-white text-base">
+                  Documentation
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        
+          <button 
+            onClick={toggleMenu} 
+            className="md:hidden text-gray-400 hover:text-white p-2 focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? (
+              <X size={24} />
+            ) : (
+              <Menu size={24} />
+            )}
+          </button>
         </div>
+        {isMenuOpen && (
+          <div className="md:hidden bg-[#0d0d17] border-t border-gray-800 py-4 absolute w-full z-50">
+            <nav className="container mx-auto px-4">
+              <ul className="flex flex-col space-y-4">
+                <li>
+                  <Link 
+                    href="/" 
+                    className="text-gray-400 hover:text-white text-lg block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/about" 
+                    className="text-gray-400 hover:text-white text-lg block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/features" 
+                    className="text-gray-400 hover:text-white text-lg block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Documentation
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-grow">
@@ -51,8 +122,7 @@ const scrollEmail = () => {
                   Building future tech with waffy. Ensures better performance and scalability. AI powered better tech 
                 </p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                  <Button onClick={scrollEmail} className="shadow-[5px_5px_rgba(120,_255,_120,_0.4),_10px_10px_rgba(120,_255,_120,_0.3),_15px_15px_rgba(120,_255,_120,_0.2),_20px_20px_rgba(120,_255,_120,_0.1),_25px_25px_rgba(120,_255,_120,_0.05)]
- bg-green-500 text-sm sm:text-base hover:bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3">
+                  <Button onClick={scrollEmail} className="shadow-[5px_5px_rgba(120,_255,_120,_0.4),_10px_10px_rgba(120,_255,_120,_0.3),_15px_15px_rgba(120,_255,_120,_0.2),_20px_20px_rgba(120,_255,_120,_0.1),_25px_25px_rgba(120,_255,_120,_0.05)] bg-green-500 text-sm sm:text-base hover:bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3">
                     Join Waitlist
                   </Button>
                 </div>
@@ -61,8 +131,7 @@ const scrollEmail = () => {
                 <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-72 lg:w-[300px] h-48 sm:h-64 md:h-72 lg:h-[400px] bg-gradient-to-br from-orange-500/30 to-purple-500/30 blur-3xl rounded-full"></div>
                 <div className="absolute top-1/4 right-1/4 transform rotate-12">
                   <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
-                    <div className="shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)]
- absolute inset-0 bg-gradient-to-r from-green-500/30 to-green-500/40 rounded-lg transform rotate-6"></div>
+                    <div className="shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] absolute inset-0 bg-gradient-to-r from-green-500/30 to-green-500/40 rounded-lg transform rotate-6"></div>
                     <Image 
                       className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 text-white"
                       alt="Waffy Logo"
@@ -78,20 +147,20 @@ const scrollEmail = () => {
         </section>
 
         <footer className="mt-auto border-t border-gray-800">
-          <div className="flex flex-row gap-3 mt-4 sm:mt-6 items-center justify-center">
+          <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-center">
             <Input 
-            placeholder="Enter your email to join the waitlist"
-            className="w-full max-w-md  px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-0 focus:ring-green-500"  
-            type="email"
-            aria-label="Email"
-            value={email}
-            id="email"
-            required
-            ref={emailRef}
-            onChange={(e)=>setEmail(e.target.value)}
+              placeholder="Enter your email to join the waitlist"
+              className="w-full max-w-md px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-0 focus:ring-green-500"  
+              type="email"
+              aria-label="Email"
+              value={email}
+              id="email"
+              required
+              ref={emailRef}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <Button className="bg-green-800/40 shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(0,200,83,0.15)] focus:bg-green-500/50">
-                 <ArrowRight size={36} />
+              <ArrowRight size={36} />
             </Button>
           </div>
           <div className="container mx-auto px-4 py-6 sm:py-8">
