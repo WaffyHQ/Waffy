@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   title: "Waffy",
   description: "Ai innvoations",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "https://raw.githubusercontent.com/WaffyHQ/Waffy/refs/heads/main/app/favicon.ico",
+    shortcut: "https://raw.githubusercontent.com/WaffyHQ/Waffy/refs/heads/main/app/favicon.ico",
   },
 };
 
