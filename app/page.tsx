@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import {useRef, useState } from "react"
 import {Input} from "@/components/ui/input"
-import {ArrowRight, Menu, X} from "lucide-react"
+import {ArrowRight, Menu, X, Twitter, Instagram, Linkedin, Github, Youtube} from "lucide-react"
 
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
@@ -12,12 +12,15 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
-  
+  const footerRef = useRef<HTMLDivElement>(null);
   const scrollEmail = () => {
     emailRef.current?.scrollIntoView({ behavior: 'smooth' })
     emailRef.current?.focus();
   }
-
+  const scrollFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' })
+    footerRef.current?.focus();
+  }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -27,9 +30,9 @@ export default function Home() {
   const hoverIt2 = () => {
     setHovered(2);
   }
-  const hoverIt3 = () => {
-    setHovered(3);
-  }
+  // const hoverIt3 = () => {
+  //   setHovered(3);
+  // }
   return (
     <div className="min-h-screen bg-[#0d0d17] flex flex-col">
       
@@ -52,29 +55,23 @@ export default function Home() {
             <ul className="flex space-x-6">
               <li onMouseEnter={hoverIt1} onMouseLeave={()=>setHovered(0)}>
                 <Link href="/pricing"  className="text-gray-400 hover:text-white text-base">
-                  Pricing
+                  Support
                   {hovered === 1 && (
                     <span className="block h-1 w-full bg-green-500 rounded mt-1"></span>
                   )}
                 </Link>
               </li>
               <li onMouseEnter={hoverIt2} onMouseLeave={()=>setHovered(0)}>
-                <Link href="/features" className="text-gray-400 hover:text-white text-base">
-                  Features
+                <Link  className="text-gray-400 hover:text-white text-base" href="#"
+                  onClick={(e) => {scrollFooter(); e.preventDefault();}}
+                >
+                  About us
                   {hovered===2 && (
                     <span className="block h-1 w-full bg-green-500 rounded mt-1"></span>
                   )}
                 </Link>
               </li>
-              <li onMouseEnter={hoverIt3} onMouseLeave={()=>setHovered(0)}>
-                <Link href="/documentation" className="text-gray-400 hover:text-white text-base">
-                  Documentation
-                  <span className="block h-1 w-full"></span>
-                  {hovered===3 && (
-                    <span className="block h-1 w-full bg-green-500 rounded mt-1"></span>
-                  )}
-                </Link>
-              </li>
+        
             </ul>
           </nav>
         
@@ -90,41 +87,35 @@ export default function Home() {
             )}
           </button>
         </div>
-        {isMenuOpen && (
-          <div className="md:hidden bg-[#0d0d17] border-t border-gray-800 py-4 absolute w-full z-50">
-            <nav className="container mx-auto px-4">
-              <ul className="flex flex-col space-y-4">
-                <li>
-                  <Link 
-                    href="/" 
-                    className="text-gray-400 hover:text-white text-lg block"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/about" 
-                    className="text-gray-400 hover:text-white text-lg block"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/features" 
-                    className="text-gray-400 hover:text-white text-lg block"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Documentation
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
+  
+        <div 
+          className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0d0d17] border-t border-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? 'translate-y-0' : 'translate-y-full'
+          }`}
+        >
+          <nav className="container mx-auto px-4 py-6 mb-12">
+            <ul className="flex flex-col space-y-4">
+              <li>
+                <Link 
+                  href="/support" 
+                  className="text-gray-400 hover:text-white text-lg block"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Support
+                </Link>
+              </li>
+              <li>
+                <Link 
+                href="#"
+                  className="text-gray-400 hover:text-white text-lg block"
+                  onClick={(e) => {e.preventDefault();scrollFooter();setIsMenuOpen(false)}}
+                >
+                  About us
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
       <main className="flex-grow">
@@ -149,12 +140,11 @@ export default function Home() {
               </div>
 
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[80vh] w-full md:p-0 p-10 mt-7 sm:mt-28 md:mb-0 mb-32 md:mt-0">
-                <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-72 lg:w-[300px] h-48 sm:h-64 md:h-72 lg:h-[400px] bg-gradient-to-br from-orange-500/30 to-purple-500/30 blur-3xl rounded-full"></div>
                 <div className="absolute top-1/4 right-1/4 transform rotate-12">
-                  <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+                  <div className="relative flex justify-center items-center w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
                     <div className="shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] absolute inset-0 bg-gradient-to-r from-green-500/30 to-green-500/40 rounded-lg transform rotate-6"></div>
                     <Image 
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 text-white"
+                      className="absolute rotate-347 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 text-white"
                       alt="Waffy Logo"
                       src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
                       width={128}
@@ -167,7 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mt-auto border-t border-gray-800">
+        <footer ref={footerRef} className="mt-auto border-t border-gray-800">
           <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-center">
             <Input 
               placeholder="Enter your email to join the waitlist"
@@ -184,30 +174,58 @@ export default function Home() {
               <ArrowRight size={36} />
             </Button>
           </div>
-          <div className="container mx-auto px-4 py-6 sm:py-8">
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Image 
-                src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="mb-2 sm:mb-0"
-              />
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-                <Link href="/privacy" className="text-gray-400 hover:text-white text-sm sm:text-base">
-                  Privacy Policy
-                </Link>
-                <Link href="/terms" className="text-gray-400 hover:text-white text-sm sm:text-base">
-                  Terms of Service
-                </Link>
-                <Link href="/contact" className="text-gray-400 hover:text-white text-sm sm:text-base">
-                  Contact Us
-                </Link>
-              </div>
+          <div className="container md:gap-0 gap-4 flex flex-col md:flex-row justify-evenly mx-auto px-4 py-6 sm:py-8">
+           <div className="w-full md:w-[30%]">
+              <h3 className="text-lg font-bold">About Us</h3>
+              <p className="text-gray-400 mt-2">
+                Waffy is a cutting-edge AI technology company dedicated to revolutionizing the way we interact with technology. Our mission is to create innovative solutions that enhance productivity, streamline processes, and empower individuals and businesses to achieve their goals.
+              </p>
+
+           </div>
+           <div>
+            <h3 className="text-lg font-bold">Quick Links</h3>
+            <ul className="mt-2 flex gap-4 flex-col">
+              <li>
+                <Link href="#" className="text-gray-400 hover:text-white">Home</Link>
+              </li>
+              <li>
+                <Link href="/support" className="text-gray-400 hover:text-white">Support</Link>
+              </li>
+              <li>
+                <Link href="" onClick={(e) => {scrollFooter(); e.preventDefault()}} className="text-gray-400 hover:text-white">About Us</Link>
+              </li>
+              </ul>
+           </div>
+          <div>
+            <h3 className="text-lg font-bold">Contact With Us</h3>
+            <div className="flex flex-row gap-4 items-center mt-2">
+            <div className="bg-gray-500/40 rounded-full p-2 w-fit">
+            <Link href="https://x.com/WaffyHQ" className="bg-gray-400 rounded-full">
+            <Twitter />
+            </Link> 
             </div>
-            <div className="text-center text-gray-500 mt-4 text-sm">
-              &copy; {new Date().getFullYear()} Waffy. All rights reserved.
+            <div className="bg-gray-500/40 rounded-full p-2 w-fit">
+            <Link href="https://www.instagram.com/waffyhq" className="bg-gray-400 rounded-full">
+            <Instagram />
+            </Link> 
             </div>
+            <div className="bg-gray-500/40 rounded-full p-2 w-fit">
+            <Link href="https://linkedin.com/company/WaffyHQ" className="bg-gray-400 rounded-full">
+            <Linkedin />
+            </Link> 
+            </div>
+            <div className="bg-gray-500/40 rounded-full p-2 w-fit">
+            <Link href="https://www.youtube.com/@WaffyHQ" className="bg-gray-400 rounded-full">
+            <Youtube />
+            </Link> 
+            </div>
+            <div className="bg-gray-500/40 rounded-full p-2 w-fit">
+            <Link href="https://github.com/WaffyHQ" className="bg-gray-400 rounded-full">
+            <Github />
+            </Link> 
+            </div>
+            </div>
+          </div>
           </div>
         </footer>
       </main>
