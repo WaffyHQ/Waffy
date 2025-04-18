@@ -34,7 +34,7 @@ export default function Home() {
   //   setHovered(3);
   // }
   return (
-    <div className="min-h-screen bg-[#0d0d17] flex flex-col">
+    <div className="min-h-screen bg-[#000000] flex flex-col">
       
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
       <header className="border-b border-gray-800 relative">
