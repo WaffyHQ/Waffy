@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import ReactPlayer from "react-player/lazy" // Using lazy-loaded version
-import { Play, Pause, Volume2, VolumeX, Maximize, SkipForward, SkipBack, Settings } from 'lucide-react'
+import ReactPlayer from "react-player/lazy"
+import { Play, Pause, Volume2, VolumeX, Maximize, SkipForward, SkipBack, } from 'lucide-react'
 import { Slider } from "@/components/ui/slider"
 
 export function VideoPlayer() {
