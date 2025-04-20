@@ -191,7 +191,7 @@ export default function Home() {
         </section>
         <section className="container mx-auto px-4 sm:px-6 mb-20">
   <div className="w-fit max-w-4xl mx-auto shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] h-fit rounded-xl overflow-hidden">
-  <VideoPlayer />
+  {/* <VideoPlayer /> */}
   </div>
 </section>
         <footer ref={footerRef} className="mt-auto border-t border-gray-800">
