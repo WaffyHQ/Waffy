@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowRight, Menu, X, Twitter, Instagram, Linkedin, Github, Youtube } from "lucide-react"
 import { motion } from "motion/react"
 import { GridPattern } from "@/components/magicui/grid-pattern"
-
+import { VideoPlayer} from "@/components/custom/Video"
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
@@ -119,7 +119,7 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section className="relative overflow-hidden py-20 sm:py-20 md:py-6 h-screen">
+        <section className="relative overflow-hidden mb-10 py-20 sm:py-20 md:py-6 h-screen">
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="text-center md:text-left ">
@@ -178,14 +178,22 @@ export default function Home() {
         height={128}
       />
     </motion.div>
+   
   </div>
+  
 </div>
 
 
             </div>
+          
           </div>
-        </section>
 
+        </section>
+        <section className="container mx-auto px-4 sm:px-6 mb-20">
+  <div className="w-fit max-w-4xl mx-auto shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] h-fit rounded-xl overflow-hidden">
+  <VideoPlayer />
+  </div>
+</section>
         <footer ref={footerRef} className="mt-auto border-t border-gray-800">
           <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-center">
             <Input
