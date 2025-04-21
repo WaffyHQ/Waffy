@@ -1,22 +1,18 @@
 "use client"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
-import { Input } from "@/components/ui/input"
-import { ArrowRight, Menu, X, Twitter, Instagram, Linkedin, Github, Youtube } from "lucide-react"
-import { motion } from "motion/react"
-import { GridPattern } from "@/components/magicui/grid-pattern"
-// import { VideoPlayer} from "@/components/custom/Video"
+import { Menu, X} from "lucide-react"
+import Hero from "./_components/Hero"
+import Footer from "./_components/Footer"
+import Waitlist from "./_components/Waitlist"
 
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
-  const [email, setEmail] = useState<string>("");
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -30,10 +26,6 @@ export default function Home() {
   const scrollEmail = () => {
     emailRef.current?.scrollIntoView({ behavior: 'smooth' })
     emailRef.current?.focus();
-  }
-  const scrollFooter = () => {
-    footerRef.current?.scrollIntoView({ behavior: 'smooth' })
-    footerRef.current?.focus();
   }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -76,7 +68,6 @@ export default function Home() {
               </li>
               <li onMouseEnter={hoverIt2} onMouseLeave={() => setHovered(0)} className="cursor-pointer">
                 <Link className="text-white font-semibold hover:text-white text-base" href="#"
-                  onClick={(e) => { scrollFooter(); e.preventDefault(); }}
                 >
                   About us
                   {hovered === 2 && (
@@ -120,7 +111,6 @@ export default function Home() {
                 <Link
                   href="#"
                   className="text-white font-semibold hover:text-white text-lg block"
-                  onClick={(e) => { e.preventDefault(); scrollFooter(); setIsMenuOpen(false) }}
                 >
                   About us
                 </Link>
@@ -131,182 +121,9 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section className="relative overflow-hidden mb-10 py-10 sm:py-14 md:py-6 md:h-screen">
-          <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mt-20">
-              <div className="text-center md:text-left ">
-                <p></p>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
-                  <span className="text-white">AI innovations for future</span>
-                  <br />
-                  <span className="text-green-500">Waffy : AI tech</span>
-                </h1>
-                <p className="text-gray-300 mb-6 sm:mb-8 max-w-lg mx-auto md:mx-0">
-                  Building future tech with waffy. Ensures better performance and scalability. AI powered better tech
-                </p>
-                <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                  <Button onClick={scrollEmail} className="cursor-pointer shadow-[5px_5px_rgba(120,_255,_120,_0.4),_10px_10px_rgba(120,_255,_120,_0.3),_15px_15px_rgba(120,_255,_120,_0.2),_20px_20px_rgba(120,_255,_120,_0.1),_25px_25px_rgba(120,_255,_120,_0.05)] bg-green-500 text-sm sm:text-base hover:bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3">
-                    Join Waitlist
-                  </Button>
-                </div>
-              </div>
-
-              <div className="relative z-0 h-[250px] sm:h-[300px] md:h-[400px] w-full mt-5 sm:mt-10 md:mt-0">
-                {
-                  isMobile ? (
-                    <div className="absolute inset-0 z-0">
-                      <GridPattern
-                        width={10}
-                        height={10}
-                        x={-1}
-                        y={-1}
-                        className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0"
-                      />
-                    </div>
-                  ) : (
-                    <div className="absolute inset-0 z-0">
-                      <GridPattern
-                        width={40}
-                        height={40}
-                        x={-1}
-                        y={-1}
-                        className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] md:[mask-image:radial-gradient(350px_circle_at_center,white,transparent)] z-0"
-                      />
-                    </div>
-                  )
-                }
-
-                <div className="absolute inset-0 z-10 flex justify-center items-center md:top-1/4 md:right-1/4 md:justify-end md:items-start">
-                  <motion.div
-                    className="relative z-20 flex justify-center items-center w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-60 lg:h-60"
-                    animate={{
-                      y: [0, -25, 0],
-                      rotate: [0, 10, 5, -10, 0],
-                      scale: [1, 1.15, 1.05, 1.10, 1],
-                    }}
-                    // whileHover={{
-                    //   y: 0,
-                    //   rotate: 0,
-                    //   scale: 1,
-                    // }}
-                    transition={{
-                      duration: 15,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <div className="absolute backdrop-filter backdrop-blur-sm inset-0 bg-gradient-to-r from-green-600/95 to-green-500/0 rounded-lg transform shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)]"></div>
-                    <Image
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-28 lg:w-28 text-white"
-                      alt="Waffy Logo"
-                      src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
-                      width={128}
-                      height={128}
-                    />
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* <section className="container mx-auto px-4 sm:px-6 mb-20">
-          <div className="w-fit max-w-4xl mx-auto shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] h-fit rounded-xl overflow-hidden">
-            <VideoPlayer />
-          </div>
-        </section> */}
-
-        <section className="container mx-auto px-4 sm:px-6 mb-20">
-          <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-center">
-            <Input
-              placeholder="Enter your email to join the waitlist"
-              className="w-full max-w-md px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-0 focus:ring-green-500"
-              type="email"
-              aria-label="Email"
-              value={email}
-              id="email"
-              required
-              ref={emailRef}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Button className="bg-green-800/40 shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(0,200,83,0.15)] focus:bg-green-500/50">
-              <ArrowRight size={36} />
-            </Button>
-          </div>
-        </section>
-        <footer ref={footerRef} className="mt-auto border-t border-gray-800">
-          <div className="container md:gap-0 gap-4 flex flex-col md:flex-row justify-evenly mx-auto px-4 py-6 sm:py-8">
-            {/* <div className=" flex flex-row md:gap-0 justify-center gap-10 md:flex-col items-center">
-              <Image
-                src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
-                alt="Logo"
-                width={48}
-                height={48}
-                className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
-              />
-              <div className="flex flex-row justify-center items-center md:flex-col gap-4 mt-4">
-                <Button className=" drop-shadow-green-500/50 drop-shadow-lg bg-green-500 text-sm sm:text-base hover:bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3">Signup</Button>
-                <Button className="text-white px-4 sm:px-6 py-2 sm:py-3 text-sm  border border-green-500">Login</Button>
-              </div> */}
-            {/* </div> */}
-            <div className="w-full md:w-[30%]">
-              <h3 className="text-lg font-bold">About Us</h3>
-              <p className="text-gray-400 mt-2">
-                Waffy is a cutting-edge AI technology company dedicated to revolutionizing the way we interact with technology. Our mission is to create innovative solutions that enhance productivity, streamline processes, and empower individuals and businesses to achieve their goals.
-              </p>
-
-            </div>
-            <div>
-              <h3 className="text-lg font-bold">Quick Links</h3>
-              <ul className="mt-2 flex gap-4 flex-col">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-white">Home</Link>
-                </li>
-                <li>
-                  <Link href="/support" className="text-gray-400 hover:text-white">Support</Link>
-                </li>
-                <li>
-                  <Link href="" onClick={(e) => { scrollFooter(); e.preventDefault() }} className="text-gray-400 hover:text-white">About Us</Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold">Contact With Us</h3>
-              <div className="flex flex-row gap-4 items-center mt-2">
-                <div className="bg-gray-500/40 rounded-full p-2 w-fit">
-                  <Link href="https://x.com/WaffyHQ" className="bg-gray-400 rounded-full">
-                    <Twitter />
-                  </Link>
-                </div>
-                <div className="bg-gray-500/40 rounded-full p-2 w-fit">
-                  <Link href="https://www.instagram.com/waffyhq" className="bg-gray-400 rounded-full">
-                    <Instagram />
-                  </Link>
-                </div>
-                <div className="bg-gray-500/40 rounded-full p-2 w-fit">
-                  <Link href="https://linkedin.com/company/WaffyHQ" className="bg-gray-400 rounded-full">
-                    <Linkedin />
-                  </Link>
-                </div>
-                <div className="bg-gray-500/40 rounded-full p-2 w-fit">
-                  <Link href="https://www.youtube.com/@WaffyHQ" className="bg-gray-400 rounded-full">
-                    <Youtube />
-                  </Link>
-                </div>
-                <div className="bg-gray-500/40 rounded-full p-2 w-fit">
-                  <Link href="https://github.com/WaffyHQ" className="bg-gray-400 rounded-full">
-                    <Github />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="text-center text-gray-400 p-2">
-              &copy; {new Date().getFullYear()} Waffy Inc. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Hero isMobile={isMobile} scrollEmail={scrollEmail} />
+        <Waitlist emailRef={emailRef} />
+        <Footer />
       </main>
     </div>
   )
