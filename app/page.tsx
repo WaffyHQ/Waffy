@@ -9,22 +9,6 @@ import { motion } from "motion/react"
 import { GridPattern } from "@/components/magicui/grid-pattern"
 // import { VideoPlayer} from "@/components/custom/Video"
 
-const useIsMobile = (breakpoint = 768) => {
-  if (typeof window === "undefined") return false;
-  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < breakpoint);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [breakpoint]);
-
-  return isMobile;
-};
-
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
