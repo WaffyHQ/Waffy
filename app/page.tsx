@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowRight, Menu, X, Twitter, Instagram, Linkedin, Github, Youtube } from "lucide-react"
 import { motion } from "motion/react"
 import { GridPattern } from "@/components/magicui/grid-pattern"
-import { VideoPlayer} from "@/components/custom/Video"
+// import { VideoPlayer} from "@/components/custom/Video"
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
