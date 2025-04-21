@@ -2,19 +2,47 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { ArrowRight, Menu, X, Twitter, Instagram, Linkedin, Github, Youtube } from "lucide-react"
 import { motion } from "motion/react"
 import { GridPattern } from "@/components/magicui/grid-pattern"
 // import { VideoPlayer} from "@/components/custom/Video"
+
+const useIsMobile = (breakpoint = 768) => {
+  if (typeof window === "undefined") return false;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+
 export default function Home() {
   const [hovered, setHovered] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const scrollEmail = () => {
     emailRef.current?.scrollIntoView({ behavior: 'smooth' })
     emailRef.current?.focus();
@@ -119,9 +147,9 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section className="relative overflow-hidden mb-10 py-20 sm:py-20 md:py-6 h-screen">
+        <section className="relative overflow-hidden mb-10 py-10 sm:py-14 md:py-6 md:h-screen">
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mt-20">
               <div className="text-center md:text-left ">
                 <p></p>
                 <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
@@ -139,62 +167,72 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative z-0 h-64 sm:h-80 md:h-96 lg:h-[80vh] w-full md:p-0 p-10 mt-7 sm:mt-28 md:mb-0 mb-32 md:mt-0">
-  <div className="md:ml-40 absolute inset-0 z-0">
-    <GridPattern
-      width={20}
-      height={20}
-      x={-1}
-      y={-1}
-      className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0"
-    />
-  </div>
+              <div className="relative z-0 h-[250px] sm:h-[300px] md:h-[400px] w-full mt-5 sm:mt-10 md:mt-0">
+                {
+                  isMobile ? (
+                    <div className="absolute inset-0 z-0">
+                      <GridPattern
+                        width={10}
+                        height={10}
+                        x={-1}
+                        y={-1}
+                        className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0"
+                      />
+                    </div>
+                  ) : (
+                    <div className="absolute inset-0 z-0">
+                      <GridPattern
+                        width={40}
+                        height={40}
+                        x={-1}
+                        y={-1}
+                        className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] md:[mask-image:radial-gradient(350px_circle_at_center,white,transparent)] z-0"
+                      />
+                    </div>
+                  )
+                }
 
-  <div className="absolute inset-0 z-10 flex justify-center items-center sm:top-1/4 sm:right-1/4 sm:rotate-12 sm:justify-end sm:items-start">
-    <motion.div
-      className="relative z-20 flex justify-center items-center w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
-      animate={{
-        y: [0, -25, 0],
-        rotate: [0, -17, 8, 0],
-        scale: [1, 1.25, 1],
-      }}
-      whileHover={{
-        y: 0,
-        rotate: 0,
-        scale: 1,
-      }}
-      transition={{
-        duration: 8,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
-      <div className="absolute  backdrop-filter backdrop-blur-sm inset-0 bg-gradient-to-r from-green-600/95 to-green-500/0 rounded-lg transform rotate-6 shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)]"></div>
-      <Image
-        className="absolute rotate-6 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 text-white"
-        alt="Waffy Logo"
-        src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
-        width={128}
-        height={128}
-      />
-    </motion.div>
-   
-  </div>
-  
-</div>
-
-
+                <div className="absolute inset-0 z-10 flex justify-center items-center md:top-1/4 md:right-1/4 md:justify-end md:items-start">
+                  <motion.div
+                    className="relative z-20 flex justify-center items-center w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-60 lg:h-60"
+                    animate={{
+                      y: [0, -25, 0],
+                      rotate: [0, 10, 5, -10, 0],
+                      scale: [1, 1.15, 1.05, 1.10, 1],
+                    }}
+                    // whileHover={{
+                    //   y: 0,
+                    //   rotate: 0,
+                    //   scale: 1,
+                    // }}
+                    transition={{
+                      duration: 15,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <div className="absolute backdrop-filter backdrop-blur-sm inset-0 bg-gradient-to-r from-green-600/95 to-green-500/0 rounded-lg transform shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)]"></div>
+                    <Image
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-28 lg:w-28 text-white"
+                      alt="Waffy Logo"
+                      src="https://raw.githubusercontent.com/WaffyHQ/Waffy/e0983678d5098058d9ba4c30d7b12833989b178e/public/waffy.png"
+                      width={128}
+                      height={128}
+                    />
+                  </motion.div>
+                </div>
+              </div>
             </div>
-          
           </div>
-
         </section>
+
+        {/* <section className="container mx-auto px-4 sm:px-6 mb-20">
+          <div className="w-fit max-w-4xl mx-auto shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] h-fit rounded-xl overflow-hidden">
+            <VideoPlayer />
+          </div>
+        </section> */}
+
         <section className="container mx-auto px-4 sm:px-6 mb-20">
-  <div className="w-fit max-w-4xl mx-auto shadow-[0_20px_50px_rgba(0,_200,_83,_0.7)] h-fit rounded-xl overflow-hidden">
-  {/* <VideoPlayer /> */}
-  </div>
-</section>
-        <footer ref={footerRef} className="mt-auto border-t border-gray-800">
           <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-center">
             <Input
               placeholder="Enter your email to join the waitlist"
@@ -211,6 +249,8 @@ export default function Home() {
               <ArrowRight size={36} />
             </Button>
           </div>
+        </section>
+        <footer ref={footerRef} className="mt-auto border-t border-gray-800">
           <div className="container md:gap-0 gap-4 flex flex-col md:flex-row justify-evenly mx-auto px-4 py-6 sm:py-8">
             {/* <div className=" flex flex-row md:gap-0 justify-center gap-10 md:flex-col items-center">
               <Image
