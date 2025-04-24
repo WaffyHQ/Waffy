@@ -5,13 +5,13 @@ import {ArrowRight} from "lucide-react"
 
 export default function Waitlist({ emailRef }: { emailRef: React.RefObject<HTMLInputElement | null> }) {
   return (
-    <section className="relative py-20 h-screen flex justify-center items-center overflow-hidden">
+    <section className="relative p-3 md:py-20 h-screen flex justify-center items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-green-500 via-black to-black z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-6xl font-bold mb-6 text-white">
               Introducing
               <br />
               Waffy
@@ -25,7 +25,7 @@ export default function Waitlist({ emailRef }: { emailRef: React.RefObject<HTMLI
               <div className="flex flex-row gap-3 p-2 mt-4 sm:mt-6 items-center justify-start">
         <Input
           placeholder="Enter your email to join the waitlist"
-          className="w-full max-w-md px-4 py-2 rounded-lg bg-gray-800/60 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-0 focus:ring-green-500"
+          className="w-full text-sm md:text-md max-w-md px-4 py-2 rounded-lg bg-gray-800/60 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-0 focus:ring-green-500"
           type="email"
           aria-label="Email"
           id="email"
