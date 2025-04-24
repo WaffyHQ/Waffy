@@ -6,7 +6,7 @@ import { GridPattern } from "@/components/magicui/grid-pattern"
 
 export default function Hero({ isMobile, scrollEmail }: { isMobile: boolean, scrollEmail: () => void }) {
   return (
-    <section className="relative overflow-hidden mb-10 py-10 sm:py-14 md:py-6 md:h-screen">
+    <section className="flex md:mt-20 relative overflow-hidden  py-10 sm:py-14 md:py-6 md:h-screen">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mt-20">
           <div className="text-center md:text-left ">
@@ -27,29 +27,27 @@ export default function Hero({ isMobile, scrollEmail }: { isMobile: boolean, scr
           </div>
 
           <div className="relative z-0 h-[250px] sm:h-[300px] md:h-[450px] w-full mt-5 sm:mt-10 md:mt-0">
-            {
-              isMobile ? (
-                <div className="absolute inset-0 z-0">
-                  <GridPattern
-                    width={30}
-                    height={30}
-                    x={-1}
-                    y={-1}
-                    className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0"
-                  />
-                </div>
-              ) : (
-                <div className="absolute inset-0 z-0">
-                  <GridPattern
-                    width={40}
-                    height={40}
-                    x={-1}
-                    y={-1}
-                    className="w-full h-full [mask-image:radial-gradient(350px_circle_at_center,white,transparent)] z-0"
-                  />
-                </div>
-              )
-            }
+            {isMobile ? (
+              <div className="absolute inset-0 z-0">
+                <GridPattern
+                  width={30}
+                  height={30}
+                  x={-1}
+                  y={-1}
+                  className="w-full h-full [mask-image:radial-gradient(200px_circle_at_center,white,transparent)] z-0"
+                />
+              </div>
+            ) : (
+              <div className="absolute inset-0 z-0">
+                <GridPattern
+                  width={40}
+                  height={40}
+                  x={-1}
+                  y={-1}
+                  className="w-full h-full [mask-image:radial-gradient(350px_circle_at_center,white,transparent)] z-0"
+                />
+              </div>
+            )}
 
             <div className="absolute inset-0 z-10 flex justify-center items-center md:top-1/4 md:right-1/4 md:justify-end md:items-start">
               <motion.div
@@ -59,11 +57,6 @@ export default function Hero({ isMobile, scrollEmail }: { isMobile: boolean, scr
                   rotate: [0, 10, 5, -10, 0],
                   scale: [1, 1.15, 1.05, 1.10, 1],
                 }}
-                // whileHover={{
-                //   y: 0,
-                //   rotate: 0,
-                //   scale: 1,
-                // }}
                 transition={{
                   duration: 15,
                   repeat: Infinity,
@@ -83,6 +76,7 @@ export default function Hero({ isMobile, scrollEmail }: { isMobile: boolean, scr
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-tr from-green-700 via-black to-black z-0" />
     </section>
   )
 }

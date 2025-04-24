@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import Hero from "./_components/Hero"
 import Footer from "./_components/Footer"
-import Waitlist from "./_components/Waitlist"
+import Waitlist from "./_components/NewWaitlist"
 import Navbar from "./_components/Navbar"
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
