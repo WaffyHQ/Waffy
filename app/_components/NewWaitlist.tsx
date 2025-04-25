@@ -8,7 +8,7 @@ export default function Waitlist({ emailRef }: { emailRef: React.RefObject<HTMLI
     <section className="relative md:p-3 p-9 md:py-20 h-fit flex justify-center items-center overflow-hidden">
        <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
         <div
-          className="absolute w-96 h-96 -left-11 md:left-1/5 top-3 md:top-1/4 rounded-full bg-gradient-to-br from-green-600/95 via-green-700 to-green-600/0 opacity-40 blur-3xl animate-pulse" style={{ animationDuration: "8s" }}/>
+          className="absolute md:w-96 w-64 h-64 md:h-96 -left-11 md:left-1/5 top-23 md:top-1/4 rounded-full bg-gradient-to-br from-green-600/95 via-green-700 to-green-600/0 opacity-40 blur-3xl animate-pulse" style={{ animationDuration: "8s" }}/>
         <div className="absolute w-72 h-72 bottom-1/4 left-1/3 rounded-full bg-gradient-to-r from-green-600/95 via-grenn-700 to-green-800 opacity-20 blur-3xl" />
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
