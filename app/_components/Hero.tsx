@@ -6,7 +6,7 @@ import { GridPattern } from "@/components/magicui/grid-pattern"
 
 export default function Hero({ isMobile, scrollEmail }: { isMobile: boolean, scrollEmail: () => void }) {
   return (
-    <section className="flex md:mt-20 relative overflow-hidden  py-10 sm:py-14 md:py-6 md:h-[80vh]">
+    <section className="flex md:mt-20 relative overflow-hidden  py-10 sm:py-14 md:py-6 md:mb-44">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mt-20">
           <div className="text-center md:text-left ">
