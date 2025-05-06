@@ -11,6 +11,13 @@
   --ring: 220 90% 55%;
 }
 
+html {
+  scrollbar-width: none; /* FF */
+}
+::-webkit-scrollbar {
+  width: 0px; /* Chrome & Edge */
+}
+
 body {
   font-family: system-ui, sans-serif;
 }
