@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import Navbar from '../_components/Navbar'
 import {
   Menubar,
   MenubarMenu,
@@ -14,7 +13,7 @@ function Pricing() {
   const [monthly, setMonthly] = React.useState(false);
   const pricingPlans = [{
     name: "Basic",
-    price: 5,
+    price: 0,
     credits: 600,
     details: ["Limited messages", "Unlimited prompts", "messages"],
   },
@@ -38,9 +37,7 @@ function Pricing() {
   }
 ]
   return (
-    <div className="min-h-screen bg-[#000000] flex flex-col ">
-      <Navbar />
-      <main className="flex-grow px-5" >
+    <>
         <div className='flex flex-col items-center justify-center'>
           <h1 className='text-2xl md:text-4xl font-bold text-white mt-10 md:mt-20 mb-5'>
             Choose Your <span className='text-green-500'>Plan</span>
@@ -48,10 +45,10 @@ function Pricing() {
           <p className='text-md font-mono'>For enterprise that need large and more, please contact us.</p>
         </div>
         <div className='flex flex-col items-center justify-center mt-10 overflow-x-auto'>
-          <Menubar className='rounded border-green-500'>
+          <Menubar className='rounded-full border-green-500'>
             <MenubarMenu>
-              <MenubarTrigger className={`transition-all cursor-pointer duration-500 ease-in-out ${annual ? 'rounded bg-gray-600/60' : ''}`} onClick={()=>{ setAnnual(true);setMonthly(false)}}>Annual</MenubarTrigger>
-              <MenubarTrigger className={`transition-all cursor-pointer duration-500 ease-in-out ${monthly ? 'rounded bg-gray-600/60' : ''}`} onClick={()=>{ setAnnual(false);setMonthly(true)}}>Monthly</MenubarTrigger>
+              <MenubarTrigger className={`transition-all cursor-pointer duration-500 ease-in-out ${annual ? 'rounded-full bg-gray-600/60' : ''}`} onClick={()=>{ setAnnual(true);setMonthly(false)}}>Annual</MenubarTrigger>
+              <MenubarTrigger className={`transition-all cursor-pointer duration-500 ease-in-out ${monthly ? 'rounded-full bg-gray-600/60' : ''}`} onClick={()=>{ setAnnual(false);setMonthly(true)}}>Monthly</MenubarTrigger>
             </MenubarMenu>
           </Menubar>
           <div className="mt-10 overflow-x-auto w-full h-full px-4 mb-30">
@@ -96,8 +93,7 @@ function Pricing() {
           </div>
           </div>
         </div>
-      </main>
-    </div>
+      </>
   )
 }
 
