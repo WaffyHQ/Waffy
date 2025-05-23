@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { supabase } from '@/lib/supabase';
+import db from '@/db/index';
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { waitlist } from "@/db/schema";
 import { sendEmail } from "@/lib/mail";
 import { render } from "@react-email/render";
 import WaitlistConfirmationEmail from "../../_components/mails/Waitlist";
@@ -45,25 +46,25 @@ export async function POST(request: Request) {
         }
 
         const { email } = parseResult.data;
-
-        const { data, error } = await supabase
-            .from("email")
-            .insert([{ email }]);
-        if (error?.message === "duplicate key value violates unique constraint \"email_pkey\"") {
-            return NextResponse.json({ error: "Email already registered for waitlist" }, { status: 409 });
+        let data;
+        try {
+            data = await db
+                .insert(waitlist)
+                .values({ email }); 
+        } catch (error) {
+            if (error instanceof Error && error.message.includes("duplicate key value violates unique constraint")) {
+                return NextResponse.json({ error: "Email already registered for waitlist" }, { status: 409 });
+            }
+            return NextResponse.json({ error: error instanceof Error ? error.message : "Unknown error" }, { status: 500 });
         }
 
-        if (error) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
-       // return NextResponse.json({ message: "Email saved", data }, { status: 200 });
-    const html = await render(<WaitlistConfirmationEmail userEmail={email} />);
+        const html = await render(<WaitlistConfirmationEmail userEmail={email} />);
 
-    await sendEmail(
-        email, 
-        "✅ You're on the Waitlist!", 
-        html
-    );
+        await sendEmail(
+            email, 
+            "✅ You're on the Waitlist!", 
+            html
+        );
         console.log("Email sent to:", email);
         return NextResponse.json({ message: "Email saved & mail sent", data }, { status: 200 });
 

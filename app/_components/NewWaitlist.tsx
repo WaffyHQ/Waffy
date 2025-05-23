@@ -12,7 +12,7 @@ export default function Waitlist({ emailRef }: { emailRef: React.RefObject<HTMLI
     const response = await axios.post("/api/waitlist", { email });
     return response.data;
   };
-  const { mutate, isPending, isSuccess, error, data } = useMutation({
+  const { mutate, isPending, isSuccess, error } = useMutation({
     mutationFn: submitEmail,
   });
   const handleSubmit = () => {

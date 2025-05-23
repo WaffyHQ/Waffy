@@ -59,7 +59,7 @@ function WaitlistConfirmationEmail({ userEmail }: { userEmail: string }) {
                   >
                     WAITLIST CONFIRMED
                   </div>
-                  <h1 style={{ margin: "16px 0", fontSize: "24px", fontWeight: "bold" }}>You're on the List!</h1>
+                  <h1 style={{ margin: "16px 0", fontSize: "24px", fontWeight: "bold" }}>You&apos;re on the List!</h1>
                 </td>
               </tr>
             </table>
@@ -91,13 +91,13 @@ function WaitlistConfirmationEmail({ userEmail }: { userEmail: string }) {
               <tr>
                 <td style={{ padding: "0 0 20px" }}>
                   <p style={{ fontSize: "16px", lineHeight: "1.6", margin: "0 0 20px", textAlign: "center" }}>
-                    Thank you for joining our exclusive waitlist! We're thrilled to have you on board.
+                    Thank you for joining our exclusive waitlist! We&apos;re thrilled to have you on board.
                   </p>
                   <p style={{ fontSize: "16px", lineHeight: "1.6", margin: "0 0 20px", textAlign: "center" }}>
-                    We've saved your spot with the email: <strong style={{ color: "#4ade80" }}>{userEmail}</strong>
+                    We&apos;ve saved your spot with the email: <strong style={{ color: "#4ade80" }}>{userEmail}</strong>
                   </p>
                   <p style={{ fontSize: "16px", lineHeight: "1.6", margin: "0 0 20px", textAlign: "center" }}>
-                    You'll be among the first to know when we launch and get exclusive early access to our platform.
+                    You&apos;ll be among the first to know when we launch and get exclusive early access to our platform.
                   </p>
                 </td>
               </tr>
@@ -112,12 +112,12 @@ function WaitlistConfirmationEmail({ userEmail }: { userEmail: string }) {
               <tr>
                 <td style={{ padding: "20px" }}>
                   <h2 style={{ margin: "0 0 15px", fontSize: "18px", fontWeight: "bold", color: "#4ade80" }}>
-                    What's Next?
+                    What&apos;s Next?
                   </h2>
                   <ul style={{ margin: "0", paddingLeft: "20px", color: "#cccccc" }}>
                     <li style={{ margin: "10px 0" }}>Keep an eye on your inbox for exclusive updates</li>
-                    <li style={{ margin: "10px 0" }}>We'll notify you as soon as early access is available</li>
-                    <li style={{ margin: "10px 0" }}>No need to confirm your email - you're all set!</li>
+                    <li style={{ margin: "10px 0" }}>We&apos;ll notify you as soon as early access is available</li>
+                    <li style={{ margin: "10px 0" }}>No need to confirm your email - you&apos;re all set!</li>
                   </ul>
                 </td>
               </tr>

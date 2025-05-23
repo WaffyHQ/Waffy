@@ -10,3 +10,9 @@ export const users = pgTable("users", {
     dob: date(),
     createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });
+
+export const waitlist = pgTable("waitlist", {
+    id: uuid().defaultRandom().primaryKey().notNull(),
+    email: text().notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+});
