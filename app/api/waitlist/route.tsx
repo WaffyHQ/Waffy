@@ -23,8 +23,6 @@ const emailSchema = z.object({
 
 export async function POST(request: Request) {
     const ip = request.headers.get("x-forwarded-for") || "anonymous";
-
-    console.log("IP Address:", ip);
     const { success } = await ratelimit.limit(ip);
 
     if (!success) {
