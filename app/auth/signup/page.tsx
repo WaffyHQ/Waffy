@@ -1,14 +1,14 @@
 "use client"
 
 import type React from "react"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Mail, Lock, User, Chrome, Check, X, Phone } from "lucide-react"
 import Link from "next/link"
-import { loginWithGoogle, signUpWithEmail } from "../actions/auth"
+import { loginWithGoogle, signUpWithEmail, loginWithMicrosoft } from "../actions/auth"
 import { useToast } from "@/components/custom/toast-provider"
 import {
   InputOTP,
@@ -41,9 +41,9 @@ export default function Signup() {
         const res = await sendOtp(emailOtp, email);
         if (res && res.ok) {
           success({
-                title: "Success!",
-                description: "Your email verification was completed successfully.",
-              })
+            title: "Success!",
+            description: "Your email verification was completed successfully.",
+          })
           setOne(false);
           setTwo(true);
           setIsLoading(false);
@@ -88,7 +88,7 @@ export default function Signup() {
   }, [phnOtp]);
   async function sendOtp(otp: string, arg: string) {
     setIsLoading(true);
-   
+
     try {
       const res = await fetch("/api/verify-otp", {
         method: "POST",
@@ -134,10 +134,28 @@ export default function Signup() {
     }
   }
 
-
+  const handleMicrosoftSignup = async () => {
+    setIsLoading(true);
+    try{
+    await loginWithMicrosoft();
+    setTimeout(() => setIsLoading(false), 2000)
+    await success({
+      title: "Success!",
+      description: "You have successfully signed up with Microsoft.",
+    })
+    }catch(e){
+      error({
+        title: "Error!",
+        description: "Failed to sign up with Microsoft. Please try again later.",
+      });
+      void e;
+    }
+  }
+  
   const handleGoogleSignup = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     await loginWithGoogle();
+
     setTimeout(() => setIsLoading(false), 2000)
   }
   const { success, error } = useToast();
@@ -386,6 +404,17 @@ export default function Signup() {
               >
                 <Chrome className="mr-2 h-4 w-4" />
                 Continue with Google
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full bg-white/5 border-green-500/30 text-white hover:bg-white/10 hover:border-green-500/50 transition-all duration-200"
+                onClick={handleMicrosoftSignup}
+                disabled={isLoading}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                  <path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"></path><path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"></path><path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"></path><path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"></path>
+                </svg>
+                Continue with Microsoft
               </Button>
             </CardContent>
 

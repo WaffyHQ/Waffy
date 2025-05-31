@@ -7,9 +7,12 @@ import { users } from "@/db/schema"
 import {
   googleAuthUrl,
   generateCode,
+  generateCodeAuth
 } from "@/app/actions/oAuthGoogle"
 import bcrypt from "bcryptjs"
 import {eq} from "drizzle-orm"
+import { microsoftAuthUrl } from "@/app/actions/oAuthMicrosoft";
+
 export async function loginWithGoogle() {
   const codeVerifier = generateCode()
   const cookieStore = await cookies()
@@ -21,6 +24,21 @@ export async function loginWithGoogle() {
   })
 
   const url = await googleAuthUrl(codeVerifier) 
+  redirect(url)
+}
+
+export async function loginWithMicrosoft() {
+  const codeVerifier = generateCode();
+  const codeChallengerr= generateCodeAuth(codeVerifier);
+  const cookieStore = await cookies()
+  cookieStore.set("microsoft_code_verifier", codeVerifier, {
+    httpOnly: true,
+    maxAge: 300,
+    sameSite: "lax",
+    secure: true
+  })
+
+  const url = await microsoftAuthUrl(codeChallengerr)
   redirect(url)
 }
 
