@@ -1,12 +1,16 @@
 import { pgTable, uuid, text, bigint, date, timestamp } from "drizzle-orm/pg-core";
 
+
 export const users = pgTable("users", {
     id: uuid().defaultRandom().primaryKey().notNull(),
     accountId: uuid("account_id").defaultRandom().notNull(),
-    firstName: text("first_name"),
-    lastName: text("last_name"),
+    name: text("name").notNull(),
+    image: text("image"),
     email: text().notNull(),
-    phoneNo: bigint("phone_no", { mode: "number" }).notNull(),
+    password: text("password"),
+    provider: text("provider"),
+    providerId: text("providerId"),
+    phoneNo: text("phoneNo"),
     dob: date(),
     createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });

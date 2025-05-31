@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";  
 import type { Metadata } from "next";
 import Navbar from "./_components/Navbar";
-import { ReactQueryProvider } from "./_providers/ReactQueryProvider"; // <-- import it
-
+import { ReactQueryProvider } from "./_providers/ReactQueryProvider"; 
+import { ToastProvider } from "@/components/custom/toast-provider";
 export const metadata: Metadata = {
   title: "Waffy",
   description: "AI innovations",
@@ -21,13 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="w-screen overflow-hidden overflow-y-scroll">
+      <body className="w-screen overflow-hidden overflow-y-auto">
         <div className="min-h-screen bg-[#000000] flex flex-col">
           <Navbar />
-          <main className="flex-grow px-5">
+          <main className="flex-grow">
              <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             <ReactQueryProvider>
-              {children}
+             <ToastProvider position="top-right">{children}</ToastProvider>
             </ReactQueryProvider>
             </ThemeProvider>
           </main>
